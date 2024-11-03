@@ -39,12 +39,12 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
-    "nh"
   ];
 
   environment.systemPackages = with pkgs; [
     neovim
     git
+    nh
   ];
 
   users = {
