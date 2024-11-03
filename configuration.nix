@@ -5,10 +5,10 @@
     "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
   ];
 
-  age.secrets = {
-    "nixpi-hashed-password.age".file = ./secrets/nixpi-hashed-password.age;
-    "wireless.conf".file = ./secrets/wireless.conf;
-  };
+  # age.secrets = {
+  #   "nixpi-hashed-password.age".file = ./secrets/nixpi-hashed-password.age;
+  #   "wireless.conf".file = ./secrets/wireless.conf;
+  # };
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXOS_SD";
@@ -21,8 +21,9 @@
     wireless = {
       enable = true;
       interfaces = ["wlan0"];
-      secretsFile = config.age.secrets."wireless.conf".path;
-      networks."nsa_surveillance".pskRaw = "ext:password";
+      # secretsFile = config.age.secrets."wireless.conf".path;
+      # networks."nsa_surveillance".pskRaw = "ext:password";
+      networks."nsa_surveillance".psk = "maythebloodonyourswordneverdry";
     };
   };
 
@@ -38,7 +39,8 @@
     mutableUsers = false;
     users."ando" = {
       isNormalUser = true;
-      hashedPasswordFile = config.age.secrets."nixpi-hashed-password.age".path;
+      # hashedPasswordFile = config.age.secrets."nixpi-hashed-password.age".path;
+      password = "1806";
       extraGroups = ["wheel"];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjZq6GCEU+TpzLRthwvjzN6pPO+gJt2ngakYpxycf+y ando@thunderdome"
