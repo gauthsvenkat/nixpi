@@ -54,7 +54,7 @@
       hashedPasswordFile = config.age.secrets."nixpi-hashed-password.age".path;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = [
-        # Use whatever ssh pub key at the time of building image 
+        # Use whatever ssh pub key at the time of building image
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjZq6GCEU+TpzLRthwvjzN6pPO+gJt2ngakYpxycf+y ando@thunderdome"
       ];
       packages = with pkgs; [
