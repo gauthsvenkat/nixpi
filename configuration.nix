@@ -42,17 +42,11 @@
     "flakes"
   ];
 
-  environment = {
-    sessionVariables = {
-      EDITOR = "nvim";
-      FLAKE = "/etc/nixos";
-    };
-    systemPackages = with pkgs; [
-      neovim
-      git
-      nh
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    neovim
+    git
+    nh
+  ];
 
   users = {
     mutableUsers = false;
