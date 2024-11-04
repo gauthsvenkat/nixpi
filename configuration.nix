@@ -14,6 +14,7 @@
   age.secrets = {
     "nixpi-hashed-password.age".file = ./secrets/nixpi-hashed-password.age;
     "wireless.conf".file = ./secrets/wireless.conf;
+    "wg-easy.env".file = ./secrets/wg-easy.env;
   };
 
   fileSystems."/" = {
@@ -61,6 +62,25 @@
       ];
       packages = with pkgs; [
         fastfetch
+      ];
+    };
+  };
+
+  virtualisation.oci-containers.containers = {
+    "wg-easy" = {
+      image = "ghcr.io/wg-easy/wg-easy";
+      volumes = [ "wg-easy:/etc/wireguard" ];
+      environmentFiles = [ config.age.secrets."wg-easy.env".path ];
+      ports = [
+        "51820:51820/udp"
+        "51821:51821/tcp"
+      ];
+      extraOptions = [
+        "--cap-add NET_ADMIN"
+        "--cap-add SYS_MODULE"
+        "--sysctl net.ipv4.conf.all.src_valid_mark=1"
+        "--sysctl net.ipv4.ip_forward=1"
+        "--restart unless-stopped"
       ];
     };
   };

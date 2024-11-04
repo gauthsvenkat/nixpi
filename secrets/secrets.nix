@@ -10,4 +10,5 @@ in
 {
   "nixpi-hashed-password.age".publicKeys = public_keys;
   "wireless.conf".publicKeys = public_keys;
+  "wg-easy.env".publicKeys = public_keys;
 }
