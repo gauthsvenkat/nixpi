@@ -1,7 +1,5 @@
 # nixpi
 Personal nixos configuration for raspberry pi
 
-# Make an sd image
-```shell
-nix build .#nixosConfigurations.nixpi.config.system.build.sdImage
-```
+## Running
+Comes with some default recipies. Check [justfile](justfile).
